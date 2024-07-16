@@ -8,14 +8,12 @@ Neovim's configurations are located under the following paths, depending on your
 | Windows (cmd)| `%userprofile%\AppData\Local\nvim\` |
 | Windows (powershell)| `$env:USERPROFILE\AppData\Local\nvim\` |
 
-
-<details><summary> To Clone (Mac, Linux)</summary>
+<summary> To Clone (Mac, Linux)</summary>
 
 ```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git git clone git@github.com:JoeyGarber/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
-</details>
 
 ### Post Installation
 
@@ -34,9 +32,10 @@ examples of adding popularly requested plugins.
 
 ### Install Recipes
 
-<details><summary> Get these too (WSL)</summary>
+<summary> Get these too (WSL)</summary>
+
 ```
-  sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
