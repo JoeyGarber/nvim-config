@@ -98,6 +98,12 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- These mappings control the size of splits (height and width)
+vim.keymap.set("n", "<M-.>", "<C-w>5<")
+vim.keymap.set("n", "<M-,>", "<C-w>5>")
+vim.keymap.set("n", "<M-k>", "<C-w>+")
+vim.keymap.set("n", "<M-j>", "<C-w>-")
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -146,7 +152,21 @@ require("lazy").setup({
 	--    require('Comment').setup({})
 
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				pre_hook = function()
+					return vim.bo.commentstring
+				end,
+			})
+		end,
+		lazy = false,
+		dependencies = {
+			"joosepAlviste/nvim-ts-context-commentstring",
+			"nvim-treesitter/nvim-treesitter",
+		},
+	},
 
 	-- Environment variable access
 	{ "tpope/vim-dotenv" },
@@ -247,11 +267,17 @@ require("lazy").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
 				--
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
+				defaults = {
+					mappings = {
+						n = {
+							["<C-d>"] = require("telescope.actions").delete_buffer,
+						},
+						i = {
+							["<c-enter>"] = "to_fuzzy_refine",
+							["<C-d>"] = require("telescope.actions").delete_buffer,
+						},
+					},
+				},
 				-- pickers = {}
 				extensions = {
 					["ui-select"] = {
@@ -492,7 +518,7 @@ require("lazy").setup({
 								callSnippet = "Replace",
 							},
 							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
+							diagnostics = { disable = { "missing-fields" } },
 						},
 					},
 				},
@@ -641,9 +667,9 @@ require("lazy").setup({
 
 					-- If you prefer more traditional completion keymaps,
 					-- you can uncomment the following lines
-					--['<CR>'] = cmp.mapping.confirm { select = true },
-					--['<Tab>'] = cmp.mapping.select_next_item(),
-					--['<S-Tab>'] = cmp.mapping.select_prev_item(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<down>"] = cmp.mapping.select_next_item(),
+					["<up>"] = cmp.mapping.select_prev_item(),
 
 					-- Manually trigger a completion from nvim-cmp.
 					--  Generally you don't need this, because nvim-cmp will display
@@ -758,6 +784,7 @@ require("lazy").setup({
 				"luadoc",
 				"markdown",
 				"typescript",
+				"tsx",
 				"vim",
 				"vimdoc",
 			},
