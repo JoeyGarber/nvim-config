@@ -278,7 +278,7 @@ require("lazy").setup({
 						},
 					},
 				},
-				-- pickers = {}
+				-- pickers = {},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
@@ -301,7 +301,12 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			-- vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+			vim.keymap.set("n", "<leader><leader>", function()
+				builtin.buffers({
+					sort_lastused = true,
+				})
+			end, { desc = "[ ] Find existing buffers" })
 
 			-- Additional ones
 			vim.keymap.set("n", "<C-f>", builtin.find_files, { desc = "Search [F]iles" })
