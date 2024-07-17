@@ -104,6 +104,9 @@ vim.keymap.set("n", "<M-,>", "<C-w>5>")
 vim.keymap.set("n", "<M-k>", "<C-w>+")
 vim.keymap.set("n", "<M-j>", "<C-w>-")
 
+-- Paste but keep word in register
+vim.keymap.set("n", "<leader>p", '"_dP', { desc = "Paste over word but keep in register" })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
