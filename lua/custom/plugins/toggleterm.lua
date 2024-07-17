@@ -7,8 +7,20 @@ return {
 		-- Terminal opening and closing
 		vim.keymap.set(
 			"n",
-			"<leader>tt",
-			"<cmd>ToggleTerm direction=horizontal dir=~/coding/ftevolve/<cr>",
+			"<leader>ttw",
+			"<cmd>1ToggleTerm direction=horizontal dir=~/coding/ftevolve/<cr>",
+			{ desc = "[Toggle] [Terminal]" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>ttm",
+			"<cmd>2ToggleTerm direction=horizontal dir=~/coding/ftevolve/<cr>",
+			{ desc = "[Toggle] [Terminal]" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>ttb",
+			"<cmd>3ToggleTerm direction=horizontal dir=~/coding/ftevolve/<cr>",
 			{ desc = "[Toggle] [Terminal]" }
 		)
 		-- Window navigation
@@ -19,6 +31,7 @@ return {
 		vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], opts)
 
 		local Terminal = require("toggleterm.terminal").Terminal
+		-- I don't think this part is working...
 		local currentDirectory = function()
 			return vim.fn.getcwd()
 		end
