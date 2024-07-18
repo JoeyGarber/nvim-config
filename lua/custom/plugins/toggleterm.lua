@@ -2,8 +2,24 @@ return {
 	"akinsho/toggleterm.nvim",
 	version = "*",
 	config = function()
-		require("toggleterm").setup()
-		local opts = { buffer = 0 }
+		function _G.set_terminal_keymaps(term)
+			local opts = { noremap = true }
+			-- If the terminal is LazyGit don't map this. q to quit, <esc> to go back
+			-- Otherwise hitting <esc> enters normal mode.
+			if term.cmd ~= "lazygit" then
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", [[<C-\><C-n>]], opts)
+			end
+			vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], opts)
+			vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], opts)
+			vim.keymap.set("t", "<C-k>", [[<cmd>wincmd k<cr>]], opts)
+			vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], opts)
+			vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+		end
+
+		require("toggleterm").setup({
+			on_open = set_terminal_keymaps,
+		})
+
 		-- Terminal opening and closing
 		vim.keymap.set(
 			"n",
@@ -23,23 +39,30 @@ return {
 			"<cmd>3ToggleTerm direction=horizontal dir=~/coding/ftevolve/<cr>",
 			{ desc = "[Toggle] [Terminal]" }
 		)
-		-- Window navigation
-		vim.keymap.set("t", "<esc>", [[<C-\><C-n]], opts)
-		vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], opts)
-		vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], opts)
-		vim.keymap.set("t", "<C-k>", [[<cmd>wincmd k<cr>]], opts)
-		vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], opts)
 
 		local Terminal = require("toggleterm.terminal").Terminal
-		-- I don't think this part is working...
-		local currentDirectory = function()
-			return vim.fn.getcwd()
-		end
 
 		local lazygit = Terminal:new({
 			cmd = "lazygit",
 			hidden = true,
-			dir = currentDirectory(),
+			dir = "git_dir",
+			direction = "float",
+			float_opts = {
+				border = "double",
+			},
+
+			-- function to run on opening the terminal
+			on_open = function(term)
+				-- Enter insert mode
+				vim.cmd("startinsert!")
+				-- Within this buffer, make hitting q in normal mode close the buffer
+				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<cr>", { noremap = true, silent = true })
+			end,
+
+			-- function to run on opening the terminal
+			on_close = function()
+				vim.cmd("startinsert!")
+			end,
 		})
 
 		vim.keymap.set("n", "<leader>lg", function()
