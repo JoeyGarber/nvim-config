@@ -96,6 +96,10 @@ vim.keymap.set("n", "<M-,>", "<C-w>5>")
 vim.keymap.set("n", "<M-k>", "<C-w>+")
 vim.keymap.set("n", "<M-j>", "<C-w>-")
 
+-- Center cursor on page jump
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { remap = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = true })
+
 -- Paste but keep word in register
 vim.keymap.set("n", "<leader>p", '"_dP', { desc = "Paste over word but keep in register" })
 
@@ -196,24 +200,24 @@ require("lazy").setup({
 	-- after the plugin has been loaded:
 	--  config = function() ... end
 
-{
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  },
-  keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
-    },
-  },
-},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
+	},
 
 	-- NOTE: Plugins can specify dependencies.
 	--
@@ -340,10 +344,14 @@ require("lazy").setup({
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
 			end, { desc = "[S]earch [N]eovim files" })
 
-			-- Shortcut for searching Call of Cthulhu files
-			vim.keymap.set("n", "<C-c>", function()
+			-- Shortcuts for searching Call of Cthulhu files
+			vim.keymap.set("n", "<C-c>f", function()
 				builtin.find_files({ cwd = "~/CoC/" })
-			end, { desc = "[S]earch [N]eovim files" })
+			end, { desc = "[C]all of Cthulhu - [F]iles" })
+
+			vim.keymap.set("n", "<C-c>g", function()
+				builtin.live_grep({ cwd = "~/CoC/" })
+			end, { desc = "[C]all of Cthulhu - [G]rep" })
 		end,
 	},
 
