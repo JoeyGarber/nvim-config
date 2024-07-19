@@ -33,4 +33,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = true })
 -- Paste but keep word in register
 vim.keymap.set("n", "<leader>p", '"_dP', { desc = "Paste over word but keep in register" })
 
+-- Take s key away from default, give it to mini.surround
+vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+
 -- vim: ts=2 sts=2 sw=2 et
