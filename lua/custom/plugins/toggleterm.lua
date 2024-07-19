@@ -70,22 +70,5 @@ return {
 		vim.keymap.set("n", "<leader>lg", function()
 			lazygit:toggle()
 		end, { noremap = true, silent = true, desc = "Toggle [L]azy [G]it" })
-
-		-- Yarn format
-		local yarnformat = Terminal:new({
-			cmd = "yarn format",
-			hidden = true,
-			dir = vim.api.nvim_buf_get_name(0),
-
-			-- function to run on opening the terminal
-			on_open = function(term)
-				-- Within this buffer, make hitting q in normal mode close the buffer
-				vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<cr>", { noremap = true, silent = true })
-			end,
-		})
-
-		vim.keymap.set("n", "<leader>tsf", function()
-			yarnformat:toggle()
-		end, { noremap = true, silent = true, desc = "[T]ype[S]cript Yarn [F]ormat" })
 	end,
 }
