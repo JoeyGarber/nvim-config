@@ -1,5 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+--
+--  Keymap to enter normal mode easier
+vim.keymap.set("i", "jf", "<Esc>")
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
