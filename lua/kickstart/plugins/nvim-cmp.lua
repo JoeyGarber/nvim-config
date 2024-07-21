@@ -41,6 +41,11 @@ return { -- Autocompletion
 		local luasnip = require("luasnip")
 		luasnip.config.setup({})
 
+		-- Load custom snippets
+		for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/custom/snippets/*.lua", true)) do
+			loadfile(ft_path)()
+		end
+
 		cmp.setup({
 			snippet = {
 				expand = function(args)
