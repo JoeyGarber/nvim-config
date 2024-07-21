@@ -10,6 +10,9 @@ vim.g.have_nerd_font = false
 -- [[ Setting options ]]
 require("options")
 
+-- [[ Setting globals ]]
+require("globals")
+
 -- [[ Basic Keymaps ]]
 require("keymaps")
 
