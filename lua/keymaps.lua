@@ -2,7 +2,7 @@
 --  See `:help vim.keymap.set()`
 --
 --  Keymap to enter normal mode easier
-vim.keymap.set("i", "jf", "<Esc>")
+vim.keymap.set("i", "jk", "<Esc>")
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
@@ -13,6 +13,8 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>o", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "<leader>i", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -30,8 +32,8 @@ vim.keymap.set("n", "<M-k>", "<C-w>+")
 vim.keymap.set("n", "<M-j>", "<C-w>-")
 
 -- Center cursor on page jump
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { remap = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = true })
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz", { remap = true })
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz", { remap = true })
 
 -- Paste but keep word in register
 vim.keymap.set("n", "<leader>p", '"_dP', { desc = "Paste over word but keep in register" })
