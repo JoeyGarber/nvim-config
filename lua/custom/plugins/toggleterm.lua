@@ -7,7 +7,8 @@ return {
 			-- If the terminal is LazyGit don't map this. q to quit, <esc> to go back
 			-- Otherwise hitting <esc> enters normal mode.
 			if term.cmd ~= "lazygit" then
-				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", [[<C-\><C-n>]], opts)
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<Esc>", [[<C-\><C-n>]], opts)
+				vim.api.nvim_buf_set_keymap(term.bufnr, "t", "jk", [[<C-\><C-n>]], opts)
 			end
 			vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], opts)
 			vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], opts)

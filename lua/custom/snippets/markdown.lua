@@ -34,5 +34,6 @@ ls.add_snippets("markdown", {
 	s("ana", fmt("[Anastasia Krasnov](<characters#Anastasia Krasnov>) {}", { i(0) })),
 	s("mayor", fmt("[mayor](<characters#Ogi Byrelin>) {}", { i(0) })),
 	s("viktor", fmt("[Viktor](<characters#Viktor Orlov>) {}", { i(0) })),
-	s("mogev", fmt("[mogev](<characters#Mogev>) {}", { i(0) })),
+	s("mogev", fmt("[Mogev](<characters#Mogev>) {}", { i(0) })),
+	s("polechev", fmt("[Polechev](<characters#Polechev>) {}", { i(0) })),
 })
