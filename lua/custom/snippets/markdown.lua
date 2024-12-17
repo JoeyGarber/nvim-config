@@ -13,27 +13,39 @@ ls.add_snippets("markdown", {
 
 	-- Player characters
 	-- s("I", fmt("[I](kleb-rogov) {}", { i(0) })),
-	s("kleb", fmt("[Kleb](kleb-rogov) {}", { i(0) })),
+	-- s("kleb", fmt("[Kleb](kleb-rogov) {}", { i(0) })),
+	--
+	-- s("liam", fmt("[Yakov](<characters#Liam: Yakov>) {}", { i(0) })),
+	-- s("yakov", fmt("[Yakov](<characters#Liam: Yakov>) {}", { i(0) })),
+	--
+	-- s("rob", fmt("[Leo](<characters#Rob: Leo>) {}", { i(0) })),
+	-- s("leo", fmt("[Leo](<characters#Rob: Leo>) {}", { i(0) })),
+	--
+	-- s("anson", fmt("[Inessa](<characters#Anson: Inessa>) {}", { i(0) })),
+	-- s("inessa", fmt("[Inessa](<characters#Anson: Inessa>) {}", { i(0) })),
 
-	s("liam", fmt("[Yakov](<characters#Liam: Yakov>) {}", { i(0) })),
-	s("yakov", fmt("[Yakov](<characters#Liam: Yakov>) {}", { i(0) })),
+	s("kleb", fmt("[[kleb-rogov|Kleb]] {}", { i(0) })),
 
-	s("rob", fmt("[Leo](<characters#Rob: Leo>) {}", { i(0) })),
-	s("leo", fmt("[Leo](<characters#Rob: Leo>) {}", { i(0) })),
+	s("liam", fmt("[[characters#Liam: Yakov|Yakov]] {}", { i(0) })),
+	s("yakov", fmt("[[characters#Liam: Yakov|Yakov]] {}", { i(0) })),
 
-	s("anson", fmt("[Inessa](<characters#Anson: Inessa>) {}", { i(0) })),
-	s("inessa", fmt("[Inessa](<characters#Anson: Inessa>) {}", { i(0) })),
+	s("rob", fmt("[[characters#Rob: Leo|Leo]] {}", { i(0) })),
+	s("leo", fmt("[[characters#Rob: Leo|Leo]] {}", { i(0) })),
 
-	-- NPCs
-	s("ofelya", fmt("[Ofelya](<characters#Ofelya>) {}", { i(0) })),
-	s("ogi", fmt("[Ogi](<characters#Ogi Byrelin>) {}", { i(0) })),
-	s("kane", fmt("[Kane](<characters#Kane Lier>) {}", { i(0) })),
-	s("lerin", fmt("[Lerin](<characters#Lerin>) {}", { i(0) })),
-	s("strange man", fmt("[strange man](<characters#Cloaked man smoking a pipe in the corner>) {}", { i(0) })),
-	s("dmitri", fmt("[Dmitri Krasnov](<characters#Dmitri Krasnov>) {}", { i(0) })),
-	s("ana", fmt("[Anastasia Krasnov](<characters#Anastasia Krasnov>) {}", { i(0) })),
-	s("mayor", fmt("[mayor](<characters#Ogi Byrelin>) {}", { i(0) })),
-	s("viktor", fmt("[Viktor](<characters#Viktor Orlov>) {}", { i(0) })),
-	s("mogev", fmt("[Mogev](<characters#Mogev>) {}", { i(0) })),
-	s("polechev", fmt("[Polechev](<characters#Polechev>) {}", { i(0) })),
+	s("anson", fmt("[[characters#Anson: Inessa|Inessa]] {}", { i(0) })),
+	s("inessa", fmt("[[characters#Anson: Inessa|Inessa]] {}", { i(0) })),
+
+	-- -- NPCs
+	s("mogev", fmt("[[characters#Mogev|Mogev]] {}", { i(0) })),
+	s("polechev", fmt("[[characters#Polechev|Polechev]] {}", { i(0) })),
+	s("dmitri", fmt("[[characters#Dmitri Krasnov|Dmitri]] {}", { i(0) })),
+	s("ana", fmt("[[characters#Anastasia Krasnov|Anastasia]] {}", { i(0) })),
+	s("ofelya", fmt("[[characters#Ofelya|Ofelya]] {}", { i(0) })),
+	s("ogi", fmt("[[characters#Ogi Byrelin|Ogi]] {}", { i(0) })),
+	s("mayor", fmt("[[characters#Ogi Byrelin|Ogi]] {}", { i(0) })),
+	s("kane", fmt("[[characters#Kane Lier|Kane]] {}", { i(0) })),
+	s("lerin", fmt("[[characters#Lerin|Lerin]] {}", { i(0) })),
+	s("hat man", fmt("[[characters#Cloaked man smoking a pipe in the corner|Hat Man]] {}", { i(0) })),
+	s("viktor", fmt("[[characters#Viktor Orlov|Viktor]] {}", { i(0) })),
+	-- -- Need to update these:
 })

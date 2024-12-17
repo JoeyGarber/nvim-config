@@ -17,7 +17,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	desc = "Hide formatting in markdown",
 	pattern = { "markdown" },
 	callback = function()
-		vim.opt_local.conceallevel = 3
+		-- vim.opt_local.conceallevel = 3
+		vim.opt_local.conceallevel = 2
 	end,
 })
 
