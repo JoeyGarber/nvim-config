@@ -17,27 +17,13 @@ git clone git@github.com:JoeyGarber/nvim-config.git "${XDG_CONFIG_HOME:-$HOME/.c
 
 ```sh
 git clone git@github.com:JoeyGarber/nvim-config.git "%localappdata%\nvim"
+```
 
 <summary> To Clone (Windows, powershell.exe)</summary>
 
 ```sh
 git clone git@github.com:JoeyGarber/nvim-config.git "${env:LOCALAPPDATA}\nvim"
-
-
-### Post Installation
-
-Start Neovim
-
-```sh
-nvim
 ```
-
-That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
-current plugin status. Hit `q` to close the window.
-
-Read through the `init.lua` file in your configuration folder for more
-information about extending and exploring Neovim. That also includes
-examples of adding popularly requested plugins.
 
 ### Install Recipes
 
