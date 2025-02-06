@@ -1,13 +1,8 @@
-P = function(v)
-	print(vim.inspect(v))
-	return v
-end
-
-RELOAD = function(...)
-	return require("plenary.reload").reload_module(...)
-end
-
-R = function(name)
-	RELOAD(name)
-	return require(name)
+function FormatAspHtml()
+	vim.cmd("set filetype=html")
+	vim.cmd("set filetype=aspvbs")
+	vim.cmd("set noexpandtab")
+	vim.cmd("set tabstop=4")
+	vim.cmd("set shiftwidth=0")
+	vim.cmd("set softtabstop=0")
 end

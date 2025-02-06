@@ -6,7 +6,7 @@ vim.keymap.set("i", "jk", "<Esc>")
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
@@ -40,5 +40,8 @@ vim.keymap.set("n", "<leader>p", '"_dP', { desc = "Paste over word but keep in r
 
 -- Take s key away from default, give it to mini.surround
 vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+
+-- Close buffer
+vim.keymap.set({ "n" }, "<leader>bd", "<cmd>:bd!<cr>")
 
 -- vim: ts=2 sts=2 sw=2 et
