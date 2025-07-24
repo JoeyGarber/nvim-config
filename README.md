@@ -1,5 +1,3 @@
-Note to self: Get win32yank
-
 Neovim's configurations are located under the following paths, depending on your OS:
 
 | OS | PATH |

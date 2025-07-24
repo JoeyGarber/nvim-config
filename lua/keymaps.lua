@@ -41,7 +41,4 @@ vim.keymap.set("n", "<leader>p", '"_dP', { desc = "Paste over word but keep in r
 -- Take s key away from default, give it to mini.surround
 vim.keymap.set({ "n", "x" }, "s", "<Nop>")
 
--- Close buffer
-vim.keymap.set({ "n" }, "<leader>bd", "<cmd>:bd!<cr>")
-
 -- vim: ts=2 sts=2 sw=2 et
