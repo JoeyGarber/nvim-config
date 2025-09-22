@@ -72,7 +72,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 					},
 				},
 			},
-			-- pickers = {},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
@@ -140,7 +139,11 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- Shortcut for searching worknotes
 		vim.keymap.set("n", "<leader>wn", function()
 			builtin.find_files({ cwd = "~/worknotes/" })
-		end, { desc = "[W]ork [N]otes" })
+		end, { desc = "Search [W]ork [N]otes" })
+
+		vim.keymap.set("n", "<leader>s~", function()
+			builtin.find_files({ cwd = "~/", hidden = true })
+		end, { desc = "Search Root" })
 
 		-- Shortcuts for searching Call of Cthulhu files
 		vim.keymap.set("n", "<C-c>f", function()

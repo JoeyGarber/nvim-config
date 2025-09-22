@@ -14,9 +14,16 @@ return {
 			{
 				"<leader>H",
 				function()
+					require("harpoon"):list():prepend()
+				end,
+				desc = "Harpoon File To Beginning",
+			},
+			{
+				"<leader>L",
+				function()
 					require("harpoon"):list():add()
 				end,
-				desc = "Harpoon File",
+				desc = "Harpoon File To End",
 			},
 			{
 				"<leader>h",

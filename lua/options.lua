@@ -73,6 +73,9 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 
+-- Set command line height to 1
+vim.opt.cmdheight = 1
+
 -- Makes indenting work better with the surround plugin
 vim.g.surround_indent = 0
 

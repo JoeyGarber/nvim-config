@@ -5,6 +5,7 @@
 -- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
+--
 
 return {
 	-- NOTE: Yes, you can install new plugins here!
@@ -43,8 +44,52 @@ return {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"delve",
 				"coreclr",
+				"netcoredbg",
 			},
 		})
+
+		local netcoredbg_adapter = {
+			type = "executable",
+			command = "/home/joey/netcoredbg/bin/netcoredbg",
+			args = { "--interpreter=vscode" },
+		}
+
+		dap.adapters.netcoredbg = netcoredbg_adapter
+
+		dap.adapters.coreclr = netcoredbg_adapter
+
+		require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/adjusteriq-backend/.vscode/launch.json")
+
+		dap.configurations.cs = {
+			{
+				type = "netcoredbg",
+				name = "launch - netcoredbg",
+				request = "launch",
+				program = function()
+					return vim.fn.input(
+						"Path to dll",
+						vim.fn.getcwd()
+							.. "/adjusteriq-backend/enterprise/AdjusterIQ.Application/bin/Debug/net9.0/AdjusterIQ.Application.dll",
+						"file"
+					)
+				end,
+				cwd = function()
+					return vim.fn.getcwd() .. "/adjusteriq-backend/enterprise/AdjusterIQ.Application/bin/Debug/net9.0"
+				end,
+				env = {
+					ASPNETCORE_ENVIRONMENT = "Development",
+					ASPNETCORE_URLS = "https://localhost:6101;http://localhost:6100",
+				},
+				justMyCode = true,
+				console = "integratedTerminal",
+			},
+			{
+				type = "netcoredbg",
+				name = "attach - netcoredbg",
+				request = "attach",
+				processId = require("dap.utils").pick_process,
+			},
+		}
 
 		-- Basic debugging keymaps, feel free to change to your liking!
 		vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })
@@ -85,33 +130,6 @@ return {
 		dap.listeners.before.event_terminated["dapui_config"] = dapui.close
 		dap.listeners.before.event_exited["dapui_config"] = dapui.close
 
-		dap.adapters.coreclr = {
-			type = "executable",
-			command = vim.fn.stdpath("data") .. "/mason/bin/netcoredbg",
-			args = { "--interpreter=vscode" },
-		}
-
-		dap.configurations.cs = {
-			{
-				justMyCode = false,
-				type = "coreclr",
-				name = "launch - netcoredbg",
-				request = "launch",
-				program = function()
-					return vim.fn.input("Path to dll", vim.fn.getcwd() .. "/bin/Debug/", "file")
-				end,
-			},
-		}
-
 		-- require("dap.ext.vscode").load_launchjs(nil, { coreclr = { "cs" } })
-
-		-- Install golang specific config
-		require("dap-go").setup({
-			delve = {
-				-- On Windows delve must be run attached or it crashes.
-				-- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-				detached = vim.fn.has("win32") == 0,
-			},
-		})
 	end,
 }
