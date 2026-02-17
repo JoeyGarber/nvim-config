@@ -1,6 +1,6 @@
 return {
 	"pmizio/typescript-tools.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	dependencies = { "nvim-lua/plenary.nvim" },
 	event = { "VimEnter" },
 	opts = {},
 	-- Setting keys causes a plugin to lazy load until one of the keys is clicked.

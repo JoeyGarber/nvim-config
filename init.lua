@@ -22,5 +22,14 @@ require("autocmds")
 -- [[ Configure and install plugins ]]
 require("lazy-setup")
 
+-- [[ LSP Configuration ]]
+-- Broadcast nvim-cmp capabilities to all LSP servers
+vim.lsp.config("*", {
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+})
+
+-- Enable language servers (configs live in lsp/*.lua)
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "markdown_oxide" })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
