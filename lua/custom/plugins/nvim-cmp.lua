@@ -1,6 +1,5 @@
 return { -- Autocompletion
 	"hrsh7th/nvim-cmp",
-	commit = "7e348da",
 	event = "InsertEnter",
 	dependencies = {
 		-- Snippet Engine & its associated nvim-cmp source
@@ -111,6 +110,7 @@ return { -- Autocompletion
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
 			}),
 			sources = {
+				{ name = "lazydev", group_index = 0 },
 				{
 					name = "nvim_lsp",
 					option = {

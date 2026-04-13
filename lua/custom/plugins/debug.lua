@@ -58,8 +58,6 @@ return {
 
 		dap.adapters.coreclr = netcoredbg_adapter
 
-		require("dap.ext.vscode").load_launchjs(vim.fn.getcwd() .. "/adjusteriq-backend/.vscode/launch.json")
-
 		dap.configurations.cs = {
 			{
 				type = "netcoredbg",

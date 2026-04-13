@@ -9,6 +9,9 @@ return { -- Collection of various small independent plugins/modules
 		--  - ci'  - [C]hange [I]nside [']quote
 		require("mini.ai").setup({ n_lines = 500 })
 
+		-- Surround actions (sa/sd/sr/sf/sF)
+		require("mini.surround").setup()
+
 		-- Enhanced aligning
 		require("mini.align").setup()
 
