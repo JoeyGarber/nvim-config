@@ -17,6 +17,7 @@ return {
 				"lua-language-server",
 				"rust-analyzer",
 				"markdown-oxide",
+				"typescript-language-server",
 			},
 		},
 	},

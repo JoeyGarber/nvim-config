@@ -29,7 +29,7 @@ vim.lsp.config("*", {
 })
 
 -- Enable language servers (configs live in lsp/*.lua)
-vim.lsp.enable({ "lua_ls", "rust_analyzer", "markdown_oxide" })
+vim.lsp.enable({ "lua_ls", "rust_analyzer", "markdown_oxide", "ts_ls" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
