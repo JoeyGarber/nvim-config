@@ -18,6 +18,8 @@ return {
 				"rust-analyzer",
 				"markdown-oxide",
 				"typescript-language-server",
+				"vue-language-server",
+				"phpactor",
 			},
 		},
 	},

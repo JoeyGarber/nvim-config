@@ -76,6 +76,28 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
 				},
+				live_grep_args = {
+					mappings = {
+						i = {
+							-- Quote what's typed so far and append a Vue file glob
+							["<C-v>"] = require("telescope-live-grep-args.actions").quote_prompt({
+								postfix = ' -g "*.vue"',
+							}),
+							["<C-p>"] = require("telescope-live-grep-args.actions").quote_prompt({
+								postfix = ' -g "*.php"',
+							}),
+						},
+						n = {
+							-- Quote what's typed so far and append a Vue file glob
+							["<C-v>"] = require("telescope-live-grep-args.actions").quote_prompt({
+								postfix = ' -g "*.vue"',
+							}),
+							["<C-p>"] = require("telescope-live-grep-args.actions").quote_prompt({
+								postfix = ' -g "*.php"',
+							}),
+						},
+					},
+				},
 			},
 		})
 
@@ -153,6 +175,5 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<C-c>g", function()
 			builtin.live_grep({ cwd = "~/CoC/" })
 		end, { desc = "[C]all of Cthulhu - [G]rep" })
-
 	end,
 }
