@@ -10,4 +10,12 @@ return {
 		-- when settings change. Preferences live in ~/.config/phpactor/phpactor.json.
 		["language_server_configuration.auto_config"] = false,
 	},
+	capabilities = {
+		textDocument = {
+			completion = vim.NIL,
+			hover = vim.NIL,
+			diagnostic = vim.NIL,
+			publishDiganostics = vim.NIL,
+		},
+	},
 }

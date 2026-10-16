@@ -3,17 +3,36 @@ return { -- Autoformat
 	lazy = false,
 	keys = {
 		{
-			"<leader>f",
+			"<leader>ff",
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
 			mode = "",
 			desc = "[F]ormat buffer",
 		},
+		{
+			"<leader>fe",
+			function()
+				vim.cmd("FormatEnable")
+			end,
+			mode = "",
+			desc = "[F]ormat [E]nable",
+		},
+		{
+			"<leader>fd",
+			function()
+				vim.cmd("FormatDisable")
+			end,
+			mode = "",
+			desc = "[F]ormat [D]isable",
+		},
 	},
 	opts = {
 		notify_on_error = false,
 		format_on_save = function(bufnr)
+			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+				return
+			end
 			-- Disable "format_on_save lsp_fallback" for languages that don't
 			-- have a well standardized coding style. You can add additional
 			-- languages here or re-enable it for the disabled ones.
@@ -45,4 +64,17 @@ return { -- Autoformat
 			-- php = { "php_cs_fixer" },
 		},
 	},
+	config = function(_, opts)
+		vim.g.disable_autoformat = true
+
+		require("conform").setup(opts)
+
+		vim.api.nvim_create_user_command("FormatDisable", function()
+			vim.g.disable_autoformat = true
+		end, { desc = "Disable autoformat-on-save" })
+
+		vim.api.nvim_create_user_command("FormatEnable", function()
+			vim.g.disable_autoformat = false
+		end, { desc = "Re-enable autoformat-on-save" })
+	end,
 }
