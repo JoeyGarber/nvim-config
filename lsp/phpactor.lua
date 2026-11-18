@@ -10,12 +10,16 @@ return {
 		-- when settings change. Preferences live in ~/.config/phpactor/phpactor.json.
 		["language_server_configuration.auto_config"] = false,
 	},
-	capabilities = {
-		textDocument = {
-			completion = vim.NIL,
-			hover = vim.NIL,
-			diagnostic = vim.NIL,
-			publishDiganostics = vim.NIL,
-		},
-	},
+	on_init = function(client)
+		-- Intelephense owns these; Phpactor keeps code actions, rename, implementation, type definition
+		local caps = client.server_capabilities
+		caps.completionProvider = nil
+		caps.hoverProvider = nil
+		caps.signatureHelpProvider = nil
+		caps.definitionProvider = nil
+		caps.referencesProvider = nil
+		caps.documentSymbolProvider = nil
+		caps.workspaceSymbolProvider = nil
+		caps.documentHighlightProvider = nil
+	end,
 }
